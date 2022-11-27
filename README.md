@@ -23,9 +23,13 @@ Gå igenom koden i lugn och ro och se till att ni förstår vad den gör och hur
 För G:
 
 - Skriv tester för minst 70% av funktionerna
+- Skriva grundläggande integrationstester
+- Använda enklare mock-objekt.
 - Ha code coverage på minst 60%
 
 För VG:
 
 - Skriv tester för samtliga funktioner i filerna angivna ovan
+- Bättre struktur på mock-objekten
+- Kunna strukturera dina tester och visa på god förståelse i testerna.
 - Ha code coverage på över 90%
