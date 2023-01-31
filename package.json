@@ -3,8 +3,22 @@
     "@parcel/transformer-sass": "^2.7.0",
     "@parcel/transformer-typescript-tsc": "^2.8.0",
     "@parcel/validator-typescript": "^2.8.0",
+    "@types/jest": "^29.4.0",
     "buffer": "^5.7.1",
-    "parcel": "^2.8.0"
+    "jest": "^29.4.1",
+    "parcel": "^2.8.0",
+    "ts-jest": "^29.0.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ]
+  },
+  "scripts": {
+    "test": "npx jest --watchAll"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
