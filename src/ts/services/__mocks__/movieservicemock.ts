@@ -1,18 +1,5 @@
 import { IMovie } from "../../models/Movie";
 
-export const getData = async (searchText: string): Promise<IMovie[]> => {
-    return new Promise((resolve, reject) => {
-        if(searchText === '') {
-            resolve([]);
-        }
-        if(searchText !== 'error') {
-            resolve(mockListOfMovies);
-        } else {
-            reject([]);
-        }
-    });
-};
-
 export let mockListOfMovies: IMovie[] = [
     {
         Title: 'Remember Me',

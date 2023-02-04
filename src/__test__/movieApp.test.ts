@@ -129,5 +129,5 @@ test('Should display the noMessage', () => {
     movieApp.displayNoResult(movieContainer);
 
     //Assert
-    expect(movieContainer.textContent).toBe('Inga sökresultat att visa');
+    expect(movieContainer.textContent).toEqual('Inga sökresultat att visa');
 });
