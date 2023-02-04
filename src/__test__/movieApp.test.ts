@@ -18,7 +18,7 @@ test('Should call handleSubmit on submit', () => {
     `;
 
     const submitForm = document.getElementById('searchForm') as HTMLFormElement;
-    let spyOnHandleSubmit = jest.spyOn(movieApp, 'handleSubmit').mockReturnValue(
+    const spyOnHandleSubmit = jest.spyOn(movieApp, 'handleSubmit').mockReturnValue(
         new Promise<void>((resolve)=> {
             resolve();
         })
@@ -32,3 +32,46 @@ test('Should call handleSubmit on submit', () => {
     expect(spyOnHandleSubmit).toHaveBeenCalled();
     spyOnHandleSubmit.mockRestore();
 });
+
+describe('Functions related to handleSubmit', () => {
+    test('Should call createHtml', async () => {
+        document.body.innerHTML = `
+            <input type="text" id="searchText" placeholder="Skriv titel här" />
+            <div id="movie-container"></div>
+        `;
+
+        (document.getElementById('searchText') as HTMLInputElement).value = 'test';
+        const spyOnCreateHtml = jest.spyOn(movieApp, 'createHtml').mockReturnValue();
+
+        //Act
+        await movieApp.handleSubmit();
+
+        //Assert
+        expect(spyOnCreateHtml).toHaveBeenCalled();
+        spyOnCreateHtml.mockRestore();
+    });
+
+    test('Should call displayNoResults again', async () => {
+        //Arrange
+        document.body.innerHTML = `
+            <input type="text" id="searchText" placeholder="Skriv titel här" />
+            <div id="movie-container"></div>
+        `;
+
+        (document.getElementById('searchText') as HTMLInputElement).value = '';
+        const spyOnDisplayNoResults = jest.spyOn(movieApp, 'displayNoResult').mockReturnValue();
+
+        //Act
+        await movieApp.handleSubmit();
+
+        //Assert
+        expect(spyOnDisplayNoResults).toHaveBeenCalled();
+        spyOnDisplayNoResults.mockRestore();
+    })
+})
+
+        //Arrange
+
+        //Act
+
+        //Assert
