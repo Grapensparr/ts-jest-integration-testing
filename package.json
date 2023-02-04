@@ -23,8 +23,6 @@
     "axios": "^1.3.0"
   },
   "scripts": {
-    "test": "npx jest --watchAll",
-    "dev": "parcel src/index.html",
-    "coverage": "jest --coverage"
+    "test": "npx jest --watchAll"
   }
 }
