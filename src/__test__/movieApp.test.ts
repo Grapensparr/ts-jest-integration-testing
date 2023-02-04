@@ -38,7 +38,7 @@ test('Should call handleSubmit on submit', () => {
     spyOnHandleSubmit.mockRestore();
 });
 
-describe('Functions related to handleSubmit', () => {
+describe('Tests related to handleSubmit', () => {
     test('Should call createHtml', async () => {
         document.body.innerHTML = `
             <input type="text" id="searchText" placeholder="Skriv titel här" />

@@ -6,7 +6,7 @@ import axios from 'axios';
 jest.mock('axios');
 const mockAxios = axios as jest.Mocked<typeof axios>;
 
-describe('Functions related to getData', () => {
+describe('Tests related to getData', () => {
     test('Should retrieve mock data', async () => {
         //Arrange
         mockAxios.get.mockResolvedValue({ data: { Search: mockListOfMovies } });
