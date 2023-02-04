@@ -115,6 +115,8 @@ test('Should create HTML elements', () => {
     //Assert
     const movies = document.querySelectorAll('.movie');
     expect(movies.length).toEqual(mockListOfMovies.length);
+    expect(movieContainer.innerHTML).toContain('h3');
+    expect(movieContainer.innerHTML).toContain('img');
 });
 
 test('Should display the noMessage', () => {
@@ -129,5 +131,6 @@ test('Should display the noMessage', () => {
     movieApp.displayNoResult(movieContainer);
 
     //Assert
+    expect(movieContainer.innerHTML).toContain('p');
     expect(movieContainer.textContent).toEqual('Inga sökresultat att visa');
 });
