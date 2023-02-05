@@ -1,10 +1,10 @@
-import * as functions from "../ts/functions";
-import { IMovie } from "../ts/models/Movie";
+import * as functions from '../ts/functions';
+import { IMovie } from '../ts/models/Movie';
 
 describe('Tests related to movieSort', () => {
     test('Should sort movies in alpabetical order', () => {
         //Arrange
-        const movies: IMovie[] = [
+        const listOfMovies: IMovie[] = [
             {Title: 'Remember Me', Year: '2010', imdbID: 'tt1403981', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BOTA4MTg1ODkwNF5BMl5BanBnXkFtZTcwMzE5ODAxMw@@._V1_SX300.jpg'},
             {Title: 'The Green Mile', Year: '1999', imdbID: 'tt0120689', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_SX300.jpg'},
             {Title: 'The Departed', Year: '2006', imdbID: 'tt0407887', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BMTI1MTY2OTIxNV5BMl5BanBnXkFtZTYwNjQ4NjY3._V1_SX300.jpg'},
@@ -14,15 +14,15 @@ describe('Tests related to movieSort', () => {
         ];
 
         //Act
-        functions.movieSort(movies);
+        functions.movieSort(listOfMovies);
 
         //Assert
-        expect(movies[0].Title).toEqual('Anaconda')
-        expect(movies[movies.length - 1].Title).toEqual('The Green Mile');
+        expect(listOfMovies[0].Title).toEqual('Anaconda');
+        expect(listOfMovies[listOfMovies.length - 1].Title).toEqual('The Green Mile');
     })
     test('Should sort movies in reverse alpabetical order', () => {
         //Arrange
-        const movies: IMovie[] = [
+        const listOfMovies: IMovie[] = [
             {Title: 'Remember Me', Year: '2010', imdbID: 'tt1403981', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BOTA4MTg1ODkwNF5BMl5BanBnXkFtZTcwMzE5ODAxMw@@._V1_SX300.jpg'},
             {Title: 'The Green Mile', Year: '1999', imdbID: 'tt0120689', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_SX300.jpg'},
             {Title: 'The Departed', Year: '2006', imdbID: 'tt0407887', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BMTI1MTY2OTIxNV5BMl5BanBnXkFtZTYwNjQ4NjY3._V1_SX300.jpg'},
@@ -32,10 +32,10 @@ describe('Tests related to movieSort', () => {
         ];
 
         //Act
-        functions.movieSort(movies, false);
+        functions.movieSort(listOfMovies, false);
 
         //Assert
-        expect(movies[0].Title).toEqual('The Green Mile');
-        expect(movies[movies.length - 1].Title).toEqual('Anaconda');
+        expect(listOfMovies[0].Title).toEqual('The Green Mile');
+        expect(listOfMovies[listOfMovies.length - 1].Title).toEqual('Anaconda');
     });
-})
+});
