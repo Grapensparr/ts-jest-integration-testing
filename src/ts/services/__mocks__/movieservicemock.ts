@@ -1,4 +1,4 @@
-import { IMovie } from "../../models/Movie";
+import { IMovie } from '../../models/Movie';
 
 export let mockListOfMovies: IMovie[] = [
     {
