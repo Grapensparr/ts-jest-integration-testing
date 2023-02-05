@@ -2,8 +2,10 @@
     * @jest-environment jsdom
 */
 
-import * as movieApp from '../ts/movieApp'
+import * as movieApp from '../ts/movieApp';
 import { mockListOfMovies } from '../ts/services/__mocks__/movieservicemock';
+import { IMovie } from '../ts/models/Movie';
+import { getData } from '../ts/services/movieservice';
 import axios from 'axios';
 
 jest.mock('axios');
@@ -45,16 +47,20 @@ describe('Tests related to handleSubmit', () => {
             <div id="movie-container"></div>
         `;
 
-        (document.getElementById('searchText') as HTMLInputElement).value = 'The Departed';
+        const searchText = (document.getElementById('searchText') as HTMLInputElement).value = 'Success';
+        const movieContainer: HTMLDivElement = document.getElementById("movie-container") as HTMLDivElement;
         const spyOnCreateHtml = jest.spyOn(movieApp, 'createHtml').mockReturnValue();
 
         mockAxios.get.mockResolvedValue({ data: { Search: mockListOfMovies } });
 
         //act
         await movieApp.handleSubmit();
+        const listOfMovies: IMovie[] = await getData(searchText);
     
         //assert
+        expect(listOfMovies.length).toEqual(mockListOfMovies.length);
         expect(spyOnCreateHtml).toHaveBeenCalled();
+        expect(spyOnCreateHtml).toHaveBeenCalledWith(listOfMovies, movieContainer);
         spyOnCreateHtml.mockRestore();
     });
 
@@ -89,7 +95,7 @@ describe('Tests related to handleSubmit', () => {
         const spyOnDisplayNoResult = jest.spyOn(movieApp, 'displayNoResult').mockReturnValue();
 
         mockAxios.get.mockImplementation(() => {
-            throw new Error('Test Error');
+            throw new Error('Display error');
         });
         
         // Act
@@ -99,7 +105,7 @@ describe('Tests related to handleSubmit', () => {
         expect(spyOnDisplayNoResult).toHaveBeenCalled();
         spyOnDisplayNoResult.mockRestore();
     });
-})
+});
 
 test('Should create HTML elements', () => {
     //Arrange
@@ -113,8 +119,8 @@ test('Should create HTML elements', () => {
     movieApp.createHtml(mockListOfMovies, movieContainer);
 
     //Assert
-    const movies = document.querySelectorAll('.movie');
-    expect(movies.length).toEqual(mockListOfMovies.length);
+    const listOfMovies = document.querySelectorAll('.movie');
+    expect(listOfMovies.length).toEqual(mockListOfMovies.length);
     expect(movieContainer.innerHTML).toContain('h3');
     expect(movieContainer.innerHTML).toContain('img');
 });
