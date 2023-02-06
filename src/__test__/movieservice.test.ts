@@ -5,7 +5,7 @@ import { getData } from '../ts/services/movieservice';
 jest.mock('axios', () => ({
     get: async (url: string) => {
         return new Promise((resolve, reject) => {
-            if(url.endsWith("Error")) {
+            if(url.endsWith('Display error')) {
                 reject([]);
             } else {
                 resolve({ data: { Search: mockListOfMovies } });
@@ -29,7 +29,7 @@ describe('Tests related to getData', () => {
         //Arrange
 
         //Act
-        const listOfMovies: IMovie[] = await getData('Error');
+        const listOfMovies: IMovie[] = await getData('Display error');
     
         //Assert
         expect(listOfMovies.length).toEqual(0);
