@@ -1,18 +1,25 @@
 import { mockListOfMovies } from '../ts/services/__mocks__/movieservicemock';
 import { IMovie } from '../ts/models/Movie';
 import { getData } from '../ts/services/movieservice';
-import axios from 'axios';
 
-jest.mock('axios');
-const mockAxios = axios as jest.Mocked<typeof axios>;
+jest.mock('axios', () => ({
+    get: async (url: string) => {
+        return new Promise((resolve, reject) => {
+            if(url.endsWith("Error")) {
+                reject([]);
+            } else {
+                resolve({ data: { Search: mockListOfMovies } });
+            };
+        });
+    }
+}));
 
 describe('Tests related to getData', () => {
     test('Should retrieve mock data', async () => {
         //Arrange
-        mockAxios.get.mockResolvedValue({ data: { Search: mockListOfMovies } });
         
         //Act
-        const listOfMovies: IMovie[] = await getData('test');
+        const listOfMovies: IMovie[] = await getData('Success');
   
         //Assert
         expect(listOfMovies.length).toEqual(6);
@@ -20,10 +27,9 @@ describe('Tests related to getData', () => {
 
     test("should not retrieve mock data", async () => {
         //Arrange
-        mockAxios.get.mockRejectedValue({ data: { Search: mockListOfMovies } });
 
         //Act
-        const listOfMovies: IMovie[] = await getData('error');
+        const listOfMovies: IMovie[] = await getData('Error');
     
         //Assert
         expect(listOfMovies.length).toEqual(0);
