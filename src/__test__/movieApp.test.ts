@@ -74,7 +74,7 @@ describe('Tests related to handleSubmit', () => {
         (document.getElementById('searchText') as HTMLInputElement).value = 'Display error';
         const spyOnDisplayNoResults = jest.spyOn(movieApp, 'displayNoResult').mockReturnValue();
 
-        mockAxios.get.mockRejectedValue({ data: { Search: mockListOfMovies } });
+        mockAxios.get.mockRejectedValue('Network error: Something went wrong');
 
         //act
         await movieApp.handleSubmit();
@@ -95,7 +95,7 @@ describe('Tests related to handleSubmit', () => {
         const spyOnDisplayNoResult = jest.spyOn(movieApp, 'displayNoResult').mockReturnValue();
 
         mockAxios.get.mockImplementation(() => {
-            throw new Error('Display error');
+            throw new Error('Network error: Something went wrong');
         });
         
         // Act
