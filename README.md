@@ -1,3 +1,11 @@
+# Resultat:
+
+![image](https://user-images.githubusercontent.com/113124538/216907770-8772e1b5-e29a-4e0e-bbb1-97cfae05b7df.png)
+
+![image](https://user-images.githubusercontent.com/113124538/216907864-89a4e7f1-a3d1-4fbc-9abb-158a1ad443fa.png)
+
+![image](https://user-images.githubusercontent.com/113124538/216907668-f1dba0e1-9f38-400b-96db-f3cd29e8d91b.png)
+
 # Inlämning - Integrationstester
 
 Detta projekt skall fungera som mall för vad ni skall testa i denna del av kursen, asynkrona tester.
